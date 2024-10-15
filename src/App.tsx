@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {FC} from 'react';
 import './App.css';
+import Dog  from './components/Dog'
 
-function App() {
+const App: FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <div className="App">
+        <h1>DOGS</h1>
+        <Dog fname={'Mikle'}
+              lname={'Chort'}
+              img={'https://static.vecteezy.com/system/resources/thumbnails/005/857/332/small_2x/funny-portrait-of-cute-corgi-dog-outdoors-free-photo.jpg'}
+
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+        </Dog>
+
+        <Dog fname={'Mig'}
+              lname={'Lond'}
+              img={'https://images.squarespace-cdn.com/content/v1/54822a56e4b0b30bd821480c/45ed8ecf-0bb2-4e34-8fcf-624db47c43c8/Golden+Retrievers+dans+pet+care.jpeg'}
+        >
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut doloribus itaque nam sunt tempora? Ab
+            ad amet animi atque consectetur, consequuntur culpa cumque debitis dicta eaque error est explicabo,
+            illum impedit laboriosam laudantium libero magni nemo nulla, numquam quasi qui quo rem repudiandae
+            sapiente sequi tempore temporibus veritatis voluptas voluptate!</p>
+        </Dog>
+        {/*<Comp fname='Mikle' lname='Chort'></Comp>*/}
+        {/*<Comp lname={{'A': 1}}></Comp>*/}
+        {/*<Comp lname={10}></Comp>*/}
+        {/*{Comp('Mikle')}*/}
+        {/*{Comp(4308)}*/}
+
+      </div>
   );
 }
 
