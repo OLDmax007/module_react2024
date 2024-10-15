@@ -14,7 +14,7 @@ const Dog:FC<IProps> = ({fname, lname, img, children}) => {
         <div className="infoOfDog">
             <h2>{fname} {lname}</h2>
             <img src={img} alt=""/>
-            <div>{children}</div>
+            <p className={'description'}>{children}</p>
         </div>
     );
 };

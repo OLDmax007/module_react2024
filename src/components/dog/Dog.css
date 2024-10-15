@@ -2,3 +2,8 @@ img {
     height: 100px;
     width: 100px;
 }
+
+.description {
+    text-align: center;
+    padding: 0 500px 0 500px;
+}
