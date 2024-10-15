@@ -1,4 +1,6 @@
 import React, {FC} from 'react';
+import './Dog.css'
+
 interface IProps {
     fname: string;
     lname: string;

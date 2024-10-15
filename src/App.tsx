@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import './App.css';
-import Dog  from './components/Dog'
+import Dog  from './components/dog/Dog'
 
 const App: FC = () => {
   return (
