@@ -7,14 +7,14 @@ const App: FC = () => {
       <div className="App">
         <h1>DOGS</h1>
         <Dog fname={'Mikle'}
-              lname={'Chort'}
+              lname={'PSINA'}
               img={'https://static.vecteezy.com/system/resources/thumbnails/005/857/332/small_2x/funny-portrait-of-cute-corgi-dog-outdoors-free-photo.jpg'}
 
         >
         </Dog>
 
         <Dog fname={'Mig'}
-              lname={'Lond'}
+              lname={'DIRAVIY'}
               img={'https://images.squarespace-cdn.com/content/v1/54822a56e4b0b30bd821480c/45ed8ecf-0bb2-4e34-8fcf-624db47c43c8/Golden+Retrievers+dans+pet+care.jpeg'}
         >
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut doloribus itaque nam sunt tempora? Ab
