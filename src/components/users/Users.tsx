@@ -8,8 +8,8 @@ const Users = () => {
     return (
         <div>
             {
-                users.map(({name, age, status}: IUserModel) => <p><User name={name} age={age}
-                                                                        status={status}></User></p>)
+                users.map(({name, age, status}: IUserModel) => <User name={name} age={age}
+                                                                        status={status}></User>)
             }
         </div>
     );
