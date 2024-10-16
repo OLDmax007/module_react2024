@@ -1,7 +1,7 @@
 interface IReview {
     rating: number;
     comment: string;
-    date: string; // Date в виде строки
+    date: string;
     reviewerName: string;
     reviewerEmail: string;
 }
@@ -18,7 +18,6 @@ interface IMeta {
     barcode: string;
     qrCode: string;
 }
-
 
 export interface IProduct {
     id: number;
@@ -40,7 +39,7 @@ export interface IProduct {
     reviews: IReview[];
     returnPolicy: string;
     minimumOrderQuantity: number;
-    meta: IMeta;
-    images: string[];
+    meta?: IMeta;
+    images?: string[];
     thumbnail: string;
 }
