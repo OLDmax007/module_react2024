@@ -6,7 +6,6 @@ import './Products.css'
 
 const Products: FC = () => {
     const products: IProduct[] = apiProducts.products;
-    console.log(products[0])
     return (
         <div className='products'>
             {products.map((product: IProduct) => (
