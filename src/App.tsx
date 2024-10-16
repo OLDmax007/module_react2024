@@ -5,7 +5,7 @@ import Products from "./components/Products/Products";
 const App: FC = () => {
   return (
       <div className="App">
-          <Products></Products>
+          <Products/>
       </div>
   );
 }
