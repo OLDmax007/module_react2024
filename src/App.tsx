@@ -2,22 +2,36 @@ import React, {FC, useState} from 'react';
 import './App.css';
 import Users from "./components/Users";
 import {IUser} from "./models/IUser";
-import {json} from "node:stream/consumers";
+import {IApiUsers} from "./models/IApiUsers";
+import {ITodo} from "./models/ITodo";
 
 const App: FC = () => {
 
+
+    const [user, setUser] = useState<IUser | null>(null)
     const printUser = (user:IUser):void => {
         setUser(user)
     }
 
-    const [user, setUser] = useState<IUser | null>(null)
+
+    const [todos, setTodos] = useState<ITodo[]>([])
+
+    const showTodoOfUser = (user: IUser) => {
+        fetch('https://jsonplaceholder.typicode.com/todos?userId=' + user.id)
+            .then(res => res.json())
+            .then((data: ITodo[]) => {
+                setTodos(data)
+            });
+    }
+    console.log(todos)
+
 
 
     return (
         <div className="App">
-            {JSON.stringify(user)}
             {user?.id}
-            <Users printUser={printUser} />
+            {JSON.stringify(todos)}
+            <Users printUser={printUser} showTodoOfUser={showTodoOfUser} />
         </div>
     );
 }

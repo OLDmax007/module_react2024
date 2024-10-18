@@ -4,17 +4,17 @@ import {IApiUsers} from "../models/IApiUsers";
 import User from "./User";
 
 type TypeUsersProps = {
-    printUser:(user:IUser)=>void
+    printUser:(user:IUser)=>void;
+    showTodoOfUser: (user:IUser)=>void
 }
 
-const Users: FC<TypeUsersProps> = ({printUser}) => {
+const Users: FC<TypeUsersProps> = ({printUser, showTodoOfUser}) => {
 
     const [users, setUsers] = useState<IUser[]>([])
     useEffect(() => {
-        fetch('https://dummyjson.com/users')
+        fetch('https://dummyjson.com/users?limit=3')
             .then(res => res.json())
             .then((data: IApiUsers) => {
-                console.log(data)
                 setUsers(data.users)
             });
     }, []);
@@ -24,7 +24,7 @@ const Users: FC<TypeUsersProps> = ({printUser}) => {
         <div>
 
             {
-                users.map((user: IUser) => <User user={user} printUser={printUser} key={user.id}/>)
+                users.map((user: IUser) => <User user={user} printUser={printUser} showTodoOfUser={showTodoOfUser} key={user.id}/>)
             }
 
         </div>
