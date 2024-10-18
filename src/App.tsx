@@ -1,28 +1,24 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import './App.css';
 
 const App: FC = () => {
 
-    const state = useState()
-    console.log(state) // [undefined or 'param', ƒ]
+    const [users, setUsers] = useState<any>([])
 
-    const [arr, setArr] = useState([1,2,3,4,5])
-    console.log(arr)
 
-    const [users, setUsers] = useState([])
+    useEffect(() => {
+        fetch('https://dummyjson.com/users')
+            .then(res => res.json())
+            .then(data => {
+                setUsers(data.users)
+            });
+    }, []);
+
     console.log(users)
-
-
-    fetch('https://dummyjson.com/users')
-        .then(res => res.json())
-        .then(data => {
-            setUsers(data)
-            console.log(data)
-        });
-
 
   return (
       <div className="App">
+          {users.map((user: any) => <p key={user.id}>{user.firstName}</p> )}
       </div>
   );
 }
