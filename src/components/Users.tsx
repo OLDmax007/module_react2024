@@ -10,16 +10,16 @@ const Users: FC = () => {
         fetch('https://dummyjson.com/users')
             .then(res => res.json())
             .then((data: IApiUsers) => {
-                console.log(data)
                 setUsers(data.users)
             });
     }, []);
 
-
+    console.log(users)
     return (
+
         <div>
             {
-                users.map((user: IUser) => <User user={user} key={user.id}/>)
+                users.map(({id, firstName, lastName, age}: IUser) => <User key={id} id={id} firstName={firstName} lastName={lastName} age={age}/>)
             }
         </div>
     );

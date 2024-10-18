@@ -1,14 +1,11 @@
 import React, {FC} from 'react';
 import {IUser} from "../models/IUser";
 
-type TypeUser = {user: IUser}
-const User:FC<TypeUser> = ({user}) => {
-    const {id, firstName, lastName} = user
-
+const User:FC<IUser> = ({id}) => {
 
     return (
         <div>
-            {id} {firstName} {lastName}
+            {id}
         </div>
     );
 };
