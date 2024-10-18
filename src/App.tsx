@@ -4,11 +4,20 @@ import Users from "./components/Users";
 
 const App: FC = () => {
 
-  return (
-      <div className="App">
-          <Users/>
-      </div>
-  );
+    const printText = ():string => {
+        return 'message'
+    }
+
+
+    return (
+        <div className="App">
+            <Users func={printText} />
+        </div>
+    );
 }
 
 export default App;
+
+
+
+

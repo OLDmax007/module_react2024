@@ -3,25 +3,36 @@ import {IUser} from "../models/IUser";
 import {IApiUsers} from "../models/IApiUsers";
 import User from "./User";
 
-const Users: FC = () => {
-    const [users, setUsers] = useState<IUser[]>([])
+type TypeUsersProps = {
+    func:()=>string
+}
 
+const Users: FC<TypeUsersProps> = ({func}) => {
+
+    const [users, setUsers] = useState<IUser[]>([])
     useEffect(() => {
         fetch('https://dummyjson.com/users')
             .then(res => res.json())
             .then((data: IApiUsers) => {
+                console.log(data)
                 setUsers(data.users)
             });
     }, []);
 
-    return (
 
+    return (
         <div>
+
             {
-                users.map(({id, firstName, lastName, age}: IUser) => <User key={id} id={id} firstName={firstName} lastName={lastName} age={age}/>)
+                users.map((user: IUser) => <User user={user} key={user.id}/>)
             }
+
+            <div> {func()}</div>
         </div>
     );
 };
 
 export default Users;
+
+
+

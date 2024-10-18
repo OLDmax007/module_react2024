@@ -1,11 +1,14 @@
 import React, {FC} from 'react';
 import {IUser} from "../models/IUser";
-
-const User:FC<IUser> = ({id}) => {
-
+type TypeUser = {
+    user: IUser;
+    children?: React.ReactNode;
+}
+const User:FC<TypeUser> = ({user, children}) => {
+    const {id, firstName} = user
     return (
         <div>
-            {id}
+            {id} {firstName} {children}
         </div>
     );
 };
