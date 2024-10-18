@@ -3,12 +3,12 @@ import {IUser} from "../models/IUser";
 
 type TypeUser = {user: IUser}
 const User:FC<TypeUser> = ({user}) => {
-
+    const {id, firstName, lastName} = user
 
 
     return (
         <div>
-            {user.id}
+            {id} {firstName} {lastName}
         </div>
     );
 };
