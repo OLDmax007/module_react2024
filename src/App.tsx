@@ -1,24 +1,12 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC} from 'react';
 import './App.css';
-import {IUser} from "./models/IUser";
-import {IApiUsers} from "./models/IApiUsers";
+import Users from "./components/Users";
 
 const App: FC = () => {
 
-    const [users, setUsers] = useState<IUser[]>([])
-
-    useEffect(() => {
-        fetch('https://dummyjson.com/users')
-            .then(res => res.json())
-            .then((data:IApiUsers) => {
-                setUsers(data.users)
-            });
-    }, []);
-
-
   return (
       <div className="App">
-          {users.map((user: IUser) => <p key={user.id}>{user.firstName}</p> )}
+          <Users/>
       </div>
   );
 }
