@@ -14,7 +14,6 @@ const Users: FC = () => {
             });
     }, []);
 
-    console.log(users)
     return (
 
         <div>
