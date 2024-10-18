@@ -1,17 +1,16 @@
 import React, {FC, useEffect, useState} from 'react';
 import './App.css';
 import {IUser} from "./models/IUser";
+import {IApiUsers} from "./models/IApiUsers";
 
 const App: FC = () => {
 
     const [users, setUsers] = useState<IUser[]>([])
 
-
     useEffect(() => {
         fetch('https://dummyjson.com/users')
             .then(res => res.json())
-            .then(data => {
-                console.log(data)
+            .then((data:IApiUsers) => {
                 setUsers(data.users)
             });
     }, []);
