@@ -4,10 +4,10 @@ import {IApiUsers} from "../models/IApiUsers";
 import User from "./User";
 
 type TypeUsersProps = {
-    func:()=>string
+    printUser:(user:IUser)=>IUser
 }
 
-const Users: FC<TypeUsersProps> = ({func}) => {
+const Users: FC<TypeUsersProps> = ({printUser}) => {
 
     const [users, setUsers] = useState<IUser[]>([])
     useEffect(() => {
@@ -24,10 +24,9 @@ const Users: FC<TypeUsersProps> = ({func}) => {
         <div>
 
             {
-                users.map((user: IUser) => <User user={user} key={user.id}/>)
+                users.map((user: IUser) => <User user={user} printUser={printUser} key={user.id}/>)
             }
 
-            <div> {func()}</div>
         </div>
     );
 };
