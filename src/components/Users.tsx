@@ -4,7 +4,7 @@ import {IApiUsers} from "../models/IApiUsers";
 import User from "./User";
 
 type TypeUsersProps = {
-    printUser:(user:IUser)=>IUser
+    printUser:(user:IUser)=>void
 }
 
 const Users: FC<TypeUsersProps> = ({printUser}) => {

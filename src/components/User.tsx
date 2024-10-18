@@ -3,7 +3,7 @@ import {IUser} from "../models/IUser";
 type TypeUserProps = {
     user: IUser;
     children?: React.ReactNode;
-    printUser: (user:IUser)=>IUser
+    printUser: (user:IUser)=>void
 }
 const User:FC<TypeUserProps> = ({user, children, printUser}) => {
     const {id, firstName} = user
@@ -11,7 +11,7 @@ const User:FC<TypeUserProps> = ({user, children, printUser}) => {
         <div>
             {id} {firstName} {children}
             <button onClick={() => {
-                console.log(printUser(user));
+                printUser(user)
             }}>
                 Click
             </button>
