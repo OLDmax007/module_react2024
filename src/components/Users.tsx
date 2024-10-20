@@ -13,7 +13,8 @@ const Users: FC<TypeUsersProps> = ({printUser, showTodoOfUser}) => {
 
     const [users, setUsers] = useState<IUser[]>([])
     useEffect(() => {
-            getUsers()
+       const result = getUsers()
+        getUsers()
             .then((data:IApiUsers) => {
                 setUsers(data.users)
             });
