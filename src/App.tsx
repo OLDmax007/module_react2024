@@ -2,7 +2,6 @@ import React, {FC, useState} from 'react';
 import './App.css';
 import Users from "./components/Users";
 import {IUser} from "./models/IUser";
-import {IApiUsers} from "./models/IApiUsers";
 import {ITodo} from "./models/ITodo";
 
 const App: FC = () => {
@@ -20,6 +19,7 @@ const App: FC = () => {
         fetch('https://jsonplaceholder.typicode.com/todos?userId=' + user.id)
             .then(res => res.json())
             .then((data: ITodo[]) => {
+                console.log('as ' + data)
                 setTodos(data)
             });
     }
@@ -30,7 +30,12 @@ const App: FC = () => {
     return (
         <div className="App">
             {user?.id}
-            {JSON.stringify(todos)}
+            {
+                todos.map((todo:ITodo) =>
+                <p key={todo.id}>{todo.completed.toString()}</p>
+            )
+            }
+
             <Users printUser={printUser} showTodoOfUser={showTodoOfUser} />
         </div>
     );
