@@ -2,6 +2,7 @@ import React, {FC, useEffect, useState} from 'react';
 import {IUser} from "../models/IUser";
 import {IApiUsers} from "../models/IApiUsers";
 import User from "./User";
+import {getUsers} from "../services/api.service";
 
 type TypeUsersProps = {
     printUser:(user:IUser)=>void;
@@ -12,9 +13,8 @@ const Users: FC<TypeUsersProps> = ({printUser, showTodoOfUser}) => {
 
     const [users, setUsers] = useState<IUser[]>([])
     useEffect(() => {
-        fetch('https://dummyjson.com/users?limit=3')
-            .then(res => res.json())
-            .then((data: IApiUsers) => {
+            getUsers()
+            .then((data:IApiUsers) => {
                 setUsers(data.users)
             });
     }, []);

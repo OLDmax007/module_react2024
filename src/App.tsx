@@ -3,6 +3,7 @@ import './App.css';
 import Users from "./components/Users";
 import {IUser} from "./models/IUser";
 import {ITodo} from "./models/ITodo";
+import {getTodoOfUser} from "./services/api.service";
 
 const App: FC = () => {
 
@@ -16,16 +17,11 @@ const App: FC = () => {
     const [todos, setTodos] = useState<ITodo[]>([])
 
     const showTodoOfUser = (user: IUser) => {
-        fetch('https://jsonplaceholder.typicode.com/todos?userId=' + user.id)
-            .then(res => res.json())
-            .then((data: ITodo[]) => {
-                console.log('as ' + data)
+      getTodoOfUser(user).then((data: ITodo[]) => {
+
                 setTodos(data)
             });
     }
-    console.log(todos)
-
-
 
     return (
         <div className="App">
