@@ -1,42 +1,44 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import './App.css';
 import Users from "./components/users/Users";
-import {IUser} from "./models/IUser";
-import {IPost} from "./models/IPost";
-import {IApiPosts} from "./models/IApiPosts";
-import {getPosts} from "./services/api.posts.service";
-
+import { IUser } from "./models/IUser";
+import { IPost } from "./models/IPost";
+import { IApiPosts } from "./models/IApiPosts";
+import { getPosts } from "./services/api.posts.service";
 
 const App: FC = () => {
-
-    const [posts, setPosts] = useState<IPost[]>([])
+    const [posts, setPosts] = useState<IPost[]>([]);
+    const [currentUserId, setCurrentUserId] = useState<number | null>(null);
 
     const lift = (user: IUser) => {
         getPosts()
             .then((data: IApiPosts) => {
-
-                const posts = data.posts
-                const filteredPosts = posts.filter((post: IPost) => {
-                    return post.userId === user.id
-                })
-
-                setPosts(filteredPosts)
-
+                const posts = data.posts;
+                const filteredPosts = posts.filter((post: IPost) => post.userId === user.id);
+                setPosts(filteredPosts);
+                setCurrentUserId(user.id);
             });
     }
 
-    console.log(posts)
-
-
     return (
         <div className="App">
-            <Users lift={lift}/>
-            {posts.map(({id, userId, title, views}: IPost) => (
+            {currentUserId !== null && <h3>User: {currentUserId}</h3>}
+            {posts.length > 0 ?
+            (
+                posts.map(({ id, title, views }: IPost) => (
                 <div className={'postOfCurUser'} key={id}>
-                    <p>{id}</p><p>{userId}</p><p>{title}</p><p>{views}</p>
-                </div>
-            ))}
+                    <h4>---Num of Post: {id}</h4>
+                    <p>Title: {title}</p>
+                    <p>Number of views: {views}</p>
+                </div>))
+            ) : (
+                  currentUserId !== null && <p>User with <strong>id: {currentUserId}</strong> hasn't posts</p>
+                )
 
+
+            }
+            <hr />
+            <Users lift={lift} />
         </div>
     );
 }
