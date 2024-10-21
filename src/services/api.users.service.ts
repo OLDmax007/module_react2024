@@ -1,4 +1,12 @@
+import axiosApi from "./axiosApi";
+
 export const getUsers = async () => {
-    const response = await fetch('https://dummyjson.com/users?limit=5');
-    return response.json()
+    const axiosResponse = await axiosApi.get('/users', {
+        params: {
+            limit: 5
+        }
+    })
+    return axiosResponse.data
 }
+
+export default axiosApi;
