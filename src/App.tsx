@@ -4,30 +4,39 @@ import Users from "./components/users/Users";
 import {IUser} from "./models/IUser";
 import {IPost} from "./models/IPost";
 import {IApiPosts} from "./models/IApiPosts";
+import {getPosts} from "./services/api.posts.service";
 
 
 const App: FC = () => {
 
-    const lift = (user: IUser) => {
-        fetch('https://dummyjson.com/posts?limit=0')
-            .then(response => response.json())
-            .then((response:IApiPosts) => {
+    const [posts, setPosts] = useState<IPost[]>([])
 
-                const posts = response.posts
+    const lift = (user: IUser) => {
+        getPosts()
+            .then((data: IApiPosts) => {
+
+                const posts = data.posts
                 const filteredPosts = posts.filter((post: IPost) => {
                     return post.userId === user.id
                 })
 
-                console.log(...filteredPosts)
+                setPosts(filteredPosts)
 
             });
     }
 
+    console.log(posts)
+
 
     return (
         <div className="App">
-
             <Users lift={lift}/>
+            {posts.map(({id, userId, title, views}: IPost) => (
+                <div className={'postOfCurUser'} key={id}>
+                    <p>{id}</p><p>{userId}</p><p>{title}</p><p>{views}</p>
+                </div>
+            ))}
+
         </div>
     );
 }
