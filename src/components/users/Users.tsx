@@ -1,8 +1,8 @@
 import React, {FC, useEffect, useState} from 'react';
-import {IUser} from "../models/IUser";
-import {IApiUsers} from "../models/IApiUsers";
+import {IUser} from "../../models/IUser";
+import {IApiUsers} from "../../models/IApiUsers";
 
- const Users:FC = () => {
+const Users:FC = () => {
     const [users, setUsers] = useState<IUser[]>([])
 
     useEffect(() => {
