@@ -11,14 +11,15 @@ const App: FC = () => {
     const [currentUserId, setCurrentUserId] = useState<number | null>(null);
 
     const lift = (user: IUser) => {
-        getPosts()
+        getPosts(user.id)
             .then((data: IApiPosts) => {
-                const posts = data.posts;
-                const filteredPosts = posts.filter((post: IPost) => post.userId === user.id);
-                setPosts(filteredPosts);
+                setPosts(data.posts);
                 setCurrentUserId(user.id);
             });
     }
+
+
+    console.log(posts)
 
     return (
         <div className="App">
