@@ -3,6 +3,7 @@ import MainLayout from "../layouts/MainLayout";
 import PageDogs from "../pages/page_dogs/PageDogs";
 import PageCats from "../pages/page_cats/PageCats";
 import HomePage from "../pages/page_home/HomePage";
+import ErrorLayout from "../layouts/ErrorLayout";
 
 export const routes = createBrowserRouter([
     {path: '/', element: <MainLayout/>, children:[
@@ -16,6 +17,8 @@ export const routes = createBrowserRouter([
             {
                 path: 'cats', element: <PageCats/>
             }
-        ], }
+        ],
+        errorElement: <ErrorLayout/>
+    },
 
 ])
