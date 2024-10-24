@@ -9,7 +9,7 @@ export type ProductType = {
 const Product:FC<ProductType> = ({product}) => {
     return (
         <div>
-            <Link to={product.id.toString()}>{product.id}</Link>
+            <Link state={product} to={product.id.toString()}>{product.id}</Link>
         </div>
     );
 };
