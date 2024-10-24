@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PageDogs = () => {
+const PageRecipes = () => {
     return (
         <div>
             <h3>DOGS</h3>
@@ -8,4 +8,4 @@ const PageDogs = () => {
     );
 };
 
-export default PageDogs;
+export default PageRecipes;

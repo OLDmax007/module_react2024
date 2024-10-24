@@ -1,21 +1,28 @@
 import {createBrowserRouter} from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
-import PageDogs from "../pages/page_dogs/PageDogs";
-import PageCats from "../pages/page_cats/PageCats";
-import HomePage from "../pages/page_home/HomePage";
+import PageRecipes from "../pages/page-recipes/PageRecipes";
+import PageProducts from "../pages/page-products/PageProducts";
+import HomePage from "../pages/page-home/HomePage";
 import ErrorLayout from "../layouts/ErrorLayout";
+import PageProductDetails from "../pages/page-product-details/PageProductDetails";
 
 export const routes = createBrowserRouter([
-    {path: '/', element: <MainLayout/>, children:[
+    {
+        path: '/', element: <MainLayout/>, children: [
             {
                 index: true, element: <HomePage/>
             },
 
             {
-                path: 'dogs', element: <PageDogs/>
+                path: 'products', element: <PageProducts/>, children: [
+                    {path: ':id', element: <PageProductDetails/>}
+                ]
             },
+
+            // {path: 'products/:id', element: <PageProductDetails/>},
+
             {
-                path: 'cats', element: <PageCats/>
+                path: 'recipes', element: <PageRecipes/>
             }
         ],
         errorElement: <ErrorLayout/>

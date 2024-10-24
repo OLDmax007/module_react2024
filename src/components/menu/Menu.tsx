@@ -6,8 +6,8 @@ const Menu = () => {
     return (
         <div className={'menu'}>
             <Link to={'/'}>Home</Link>
-            <Link to={'dogs'}>Dogs</Link>
-            <Link to={'cats'}>Cats</Link>
+            <Link to={'products'}>Products</Link>
+            <Link to={'recipes'}>Recipes</Link>
         </div>
     );
 };
