@@ -12,9 +12,13 @@ const axiosInstance = axios.create(
     }
 )
 
-const usersService:{ getUsers: () => Promise<IUser[]>;} = {
+const usersService:{ getUsers: () => Promise<IUser[]>,  getUser: (id:string) => Promise<IUser>} = {
     getUsers: async ():Promise<IUser[]>  => {
         return (await axiosInstance.get<IUser[]>('/users')).data
+    },
+
+    getUser: async (id:string):Promise<IUser>  => {
+        return (await axiosInstance.get<IUser>('/users/' + id)).data
     }
 }
 
