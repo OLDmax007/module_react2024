@@ -12,31 +12,46 @@ const axiosInstance = axios.create(
     }
 )
 
-const usersService:{ getUsers: () => Promise<IUser[]>,  getUser: (id:string) => Promise<IUser>} = {
-    getUsers: async ():Promise<IUser[]>  => {
+const usersService: { getUsers: () => Promise<IUser[]>, getUser: (id: string) => Promise<IUser> } = {
+    getUsers: async (): Promise<IUser[]> => {
         return (await axiosInstance.get<IUser[]>('/users')).data
     },
 
-    getUser: async (id:string):Promise<IUser>  => {
+    getUser: async (id: string): Promise<IUser> => {
         return (await axiosInstance.get<IUser>('/users/' + id)).data
     }
 }
 
 
-const postsService:{getPosts: () => Promise<IPost[]>;} = {
-    getPosts: async ():Promise<IPost[]>  => {
+const postsService: { getPosts: () => Promise<IPost[]>, getPostsOfUser: (id: string) => Promise<IPost[]> } = {
+    getPosts: async (): Promise<IPost[]> => {
         return (await axiosInstance.get<IPost[]>('/posts', {
             params: {
-                limit: 30
+                _limit: 30
+            }
+        })).data
+    },
+    getPostsOfUser: async (id: string): Promise<IPost[]> => {
+        return (await axiosInstance.get<IPost[]>('/posts', {
+            params: {
+                userId: id
             }
         })).data
     }
 }
 
-const commentsService: {getComments: () => Promise<IComment[]>;} = {
-    getComments: async ():Promise<IComment[]>  => {
+const commentsService: { getComments: () => Promise<IComment[]>; getCommentsOfPost: (id:string) => Promise<IComment[]> } = {
+    getComments: async (): Promise<IComment[]> => {
         return (await axiosInstance.get<IComment[]>('/comments')).data
+    },
+
+    getCommentsOfPost: async (id: string): Promise<IComment[]> => {
+        return (await axiosInstance.get<IComment[]>('/posts', {
+            params: {
+                postId: id
+            }
+        })).data
     }
 }
 
-export { usersService, postsService, commentsService };
+export {usersService, postsService, commentsService};

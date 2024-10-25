@@ -8,13 +8,13 @@ type TypeUser = {
     children?: React.ReactNode
 }
 
-const User:FC<TypeUser> = ({user:{id, name, company}}) => {
+const User:FC<TypeUser> = ({user}) => {
     return (
         <div className={'user'}>
-            <Link to={id.toString()}>
-            <p>{id}</p>
-            <p>{name}</p>
-            <p>{company.name}</p>
+            <Link state={user} to={user.id.toString()}>
+            <p>{user.id}</p>
+            <p>{user.name}</p>
+            <p>{user.company.name}</p>
             </Link>
         </div>
     );

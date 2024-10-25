@@ -1,26 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
-import {usersService} from "../../services/api.jsonplaceholder.service";
-import {IUser} from "../../models/IUser";
+import React from 'react';
+import {useLocation} from "react-router-dom";
 
 const UserDetails = () => {
-    const {id} = useParams();
-
-
-    const [user, setUser] = useState<IUser | null>(null)
-
-
-    useEffect(() => {
-        if (id) {
-            usersService.getUser(id).then((data: IUser) => setUser(data))
-        }
-    }, [id]);
+    const {state:user} = useLocation()
+    const {id, address, phone, website} = user
 
 
     return (
         <div>
             <p>
-                {user?.id} {user?.name} {user?.username}   {user?.phone} {user?.address.zipcode} {user?.website}
+              User: {id} {address.zipcode} {phone} {website}
             </p>
         </div>
     );
