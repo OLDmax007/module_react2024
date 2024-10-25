@@ -10,8 +10,6 @@ const Users = () => {
         usersService.getUsers().then((data: IUser[]) => setUsers(data))
     }, []);
 
-    console.log(users)
-
     return (
         <div>
             {users.map((user: IUser) => (

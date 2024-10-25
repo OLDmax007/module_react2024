@@ -1,5 +1,7 @@
 import React, {FC} from 'react';
 import {IUser} from "../../models/IUser";
+import '../cssComponents/GeneralCssComponents.css'
+
 type TypeUser = {
     user: IUser,
     children?: React.ReactNode
@@ -7,7 +9,7 @@ type TypeUser = {
 
 const User:FC<TypeUser> = ({user:{id, name, company}}) => {
     return (
-        <div>
+        <div className={'user'}>
             <p>{id}</p>
             <p>{name}</p>
             <p>{company.name}</p>

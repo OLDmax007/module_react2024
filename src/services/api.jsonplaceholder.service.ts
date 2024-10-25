@@ -21,7 +21,11 @@ const usersService:{ getUsers: () => Promise<IUser[]>;} = {
 
 const postsService:{getPosts: () => Promise<IPost[]>;} = {
     getPosts: async ():Promise<IPost[]>  => {
-        return (await axiosInstance.get<IPost[]>('/posts')).data
+        return (await axiosInstance.get<IPost[]>('/posts', {
+            params: {
+                limit: 30
+            }
+        })).data
     }
 }
 
