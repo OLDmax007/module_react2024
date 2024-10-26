@@ -6,7 +6,7 @@ const UserDetailsPage = () => {
     return (
         <div>
             <UserDetails/>
-            <PostsOfUser></PostsOfUser>
+            <PostsOfUser/>
         </div>
     );
 };

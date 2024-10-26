@@ -15,7 +15,7 @@ export const routes = createBrowserRouter(
                 {index: true, element: <HomePage/>},
                 {path: 'users', element: <UsersPage/>},
                 {path:'users/:id', element:<UserDetailsPage/>},
-                {path:'users/:id/:id', element:<CommentsPage/>},
+                {path:'users/:id/:id', element:<PostDetailsPage/>},
                 {path: 'posts', element: <PostsPage/>},
                 {path: 'posts/:id', element: <PostDetailsPage/>},
                 {path: 'comments', element: <CommentsPage/>}

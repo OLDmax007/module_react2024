@@ -1,5 +1,5 @@
 import React from 'react';
-import CommentsOfPost from "../../components/CommentsOfPost/CommentsOfPost";
+import CommentsOfPost from "../../components/commentsOfPost/CommentsOfPost";
 
 const PostDetailsPage = () => {
     return (

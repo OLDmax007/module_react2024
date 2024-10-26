@@ -46,7 +46,7 @@ const commentsService: { getComments: () => Promise<IComment[]>; getCommentsOfPo
     },
 
     getCommentsOfPost: async (id: string): Promise<IComment[]> => {
-        return (await axiosInstance.get<IComment[]>('/posts', {
+        return (await axiosInstance.get<IComment[]>('/comments', {
             params: {
                 postId: id
             }
