@@ -22,7 +22,6 @@ const Pagination:FC<TypePagination> = ({btnSwitch}) => {
         const page = query.get('page');
         if (page ) {
             let curPage = +page
-
             if (curPage > 1) {
                 curPage--;
                 setQuery({ page: curPage.toString() });
@@ -31,10 +30,12 @@ const Pagination:FC<TypePagination> = ({btnSwitch}) => {
 
     }
 
+    const isFirstPage:boolean = query.get('page') === '1';
+
     return (
         <div>
-            <button disabled={btnSwitch} onClick={onClickPrevHandler}>prev</button>
-            <button onClick={onClickNextHandler}>next</button>
+            <button disabled={isFirstPage}  onClick={onClickPrevHandler}>prev</button>
+            <button disabled={btnSwitch} onClick={onClickNextHandler}>next</button>
         </div>
     );
 };

@@ -1,13 +1,17 @@
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {todoService} from "../../services/api.dummyjson.service";
 import {IResponseDMJ} from "../../models/IResponseDMJ";
 import {ITodo} from "../../models/ITodo";
 import Todo from "../Todo/Todo";
 import {useSearchParams} from "react-router-dom";
 
-const Todos = () => {
+type TypeTodos = {
+    setBtnSwitch: (value: boolean) => void
+}
+
+
+const Todos:FC<TypeTodos> = ({setBtnSwitch}) => {
     const [query, setQuery] = useSearchParams({page: '1'})
-    const [btnSwitch, setBtnSwitch] = useState<boolean>(false)
     const [todos, setTodos] = useState<ITodo[]>([]);
 
     useEffect(() => {
