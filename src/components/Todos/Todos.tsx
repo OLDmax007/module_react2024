@@ -6,10 +6,8 @@ import Todo from "../Todo/Todo";
 import {useSearchParams} from "react-router-dom";
 
 const Todos = () => {
-    const [query, setQuery] = useSearchParams()
-    console.log('todo', query.get('page'))
-
-
+    const [query, setQuery] = useSearchParams({page: '1'})
+    const [btnSwitch, setBtnSwitch] = useState<boolean>(false)
     const [todos, setTodos] = useState<ITodo[]>([]);
 
     useEffect(() => {
@@ -17,6 +15,9 @@ const Todos = () => {
         if (page) {
             todoService.getAll(+page).then(((data: IResponseDMJ & { todos: ITodo[] }) => {
                 setTodos(data.todos)
+                const lastId = data.todos[data.todos.length - 1].id
+                const flag = lastId >= data.total ? true : false;
+                setBtnSwitch(flag)
             }))
         }
     }, [query]);

@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {useSearchParams} from "react-router-dom";
 
-const Pagination = () => {
+type TypePagination = {
+    btnSwitch: boolean
+}
+
+const Pagination:FC<TypePagination> = ({btnSwitch}) => {
     const [query, setQuery] = useSearchParams({page:'1'})
-
-    console.log('pag', query.get('page'))
-
 
     const onClickNextHandler = () => {
         const page = query.get('page');
@@ -32,7 +33,7 @@ const Pagination = () => {
 
     return (
         <div>
-            <button onClick={onClickPrevHandler}>prev</button>
+            <button disabled={btnSwitch} onClick={onClickPrevHandler}>prev</button>
             <button onClick={onClickNextHandler}>next</button>
         </div>
     );
