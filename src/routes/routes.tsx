@@ -4,10 +4,12 @@ import TodosPage from "../pages/TodosPage";
 import HomePage from "../pages/HomePage";
 
 const router = createBrowserRouter([
-    {path: '', element:<MainLayout/>, children: [
+    {
+        path: '', element: <MainLayout/>, children: [
             {index: true, element: <HomePage/>},
-            {path: 'todo', element: <TodosPage/>}
-        ]},
+            {path: 'todos', element: <TodosPage/>}
+        ]
+    },
 
 ])
 
