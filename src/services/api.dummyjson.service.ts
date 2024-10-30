@@ -10,14 +10,21 @@ const axiosInstance = axios.create({
 
 
 const todoService = {
-    getAll: async (page: number): Promise<IResponseDMJ & { todos: ITodo[] }> => {
-        const skip: number = (page - 1) * 30
-        return (await (axiosInstance.get<IResponseDMJ & { todos: ITodo[] }>('/todos', {
-            params: {
-                skip
-            }
-        }))).data
-    }
+    getAll: async (page: number): Promise<{ todos: ITodo[] } & {flag:boolean} > => {
+    const skip: number = (page - 1) * 30
+    const {data: {total, todos}} = await (axiosInstance.get<IResponseDMJ & { todos: ITodo[] }>('/todos', {
+        params: {
+            skip
+        }
+    }))
+
+
+    const lastId = todos[todos.length - 1].id
+    const flag = lastId >= total ? true : false;
+
+    console.log({ todos, flag })
+    return { todos, flag };
+}
 }
 
 export {todoService}
