@@ -2,10 +2,10 @@ import React, {FC} from 'react';
 import {useSearchParams} from "react-router-dom";
 
 type PaginationProps = {
-    setBtnSwitch: () => void
+    btnSwitch: boolean
 }
 
-const Pagination:FC = () => {
+const Pagination:FC<PaginationProps> = ({btnSwitch}) => {
     const [query, setQuery] = useSearchParams({page: '1'})
 
     console.log(query.get('page'))

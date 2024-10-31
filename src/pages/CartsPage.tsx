@@ -8,8 +8,8 @@ const CartsPage = () => {
 
     return (
         <div>
-            <Carts/>
-            <Pagination setBtnSwitch={setBtnSwitch()}/>
+            <Carts setBtnSwitch={setBtnSwitch} />
+            <Pagination btnSwitch={btnSwitch}/>
         </div>
     );
 };
