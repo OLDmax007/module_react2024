@@ -8,8 +8,9 @@ type CartProps = {
 const Cart:FC<CartProps> = ({cart}) => {
     return (
         <div>
-            UserId: {cart.userId} Total: {cart.total}
+            UserId: {cart.userId} Total: {cart.total} Id {cart.id}
             <ul>
+                ----------Products:
                 {cart.products.map((product: IProduct) => <li key={product.id}> {product.title}</li>)}
             </ul>
         </div>

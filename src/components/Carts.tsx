@@ -18,7 +18,7 @@ const Carts:FC<CartsProps> = ({setBtnSwitch}) => {
 
         const page = query.get('page') || '1'
         if (userId) {
-            cartsService.getAll(userId, +page).then((data: { carts: ICart[]; flag: boolean; }) => {
+            cartsService.getCartsOfUser(userId, +page).then((data: { carts: ICart[]; flag: boolean; }) => {
                 setCarts(data.carts)
                 setBtnSwitch(data.flag)
             });
@@ -27,7 +27,9 @@ const Carts:FC<CartsProps> = ({setBtnSwitch}) => {
 
     return (
         <div>
-            {carts.map((cart: ICart) => <Cart key={cart.id} cart={cart}/>)}
+            {carts.length> 0 ? (carts.map((cart: ICart) => <Cart key={cart.id} cart={cart}/>)) : (
+                <div>Nothing</div>
+            )}
         </div>
     );
 };
