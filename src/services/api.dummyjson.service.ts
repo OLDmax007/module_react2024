@@ -14,14 +14,19 @@ const axiosInstance = axios.create({
 
 const usersSerive = {
     getAll: async ():Promise<IUser[]> => {
-        const {data: {users}} = await axiosInstance.get<IDJResponse & {users: IUser[]}>('/users');
+        const {data: {users}} = await axiosInstance.get<IDJResponse & {users: IUser[]}>('/users', {
+            params: {
+                skip:30
+            }
+        });
         return users
     }
 }
 
 const cartsService  = {
     getAll: async (id:string):Promise<ICart[]> => {
-        const {data: {carts}} = await axiosInstance.get<IDJResponse & {carts: ICart[]}>('/carts');
+        const {data: {carts}} = await axiosInstance.get<IDJResponse & {carts: ICart[]}>(`/users/${id}/carts`, {
+        });
         return carts
     }
 }

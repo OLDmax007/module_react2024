@@ -10,7 +10,7 @@ type UserProps = {
 const User: FC<UserProps> = ({user: {id, firstName, lastName}}) => {
     return (
         <div>
-            <Link to={`/users/${id}`}>
+            <Link to={id.toString()}>
                 <h3>{id} {firstName} {lastName}</h3>
             </Link>
         </div>
