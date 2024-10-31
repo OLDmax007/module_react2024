@@ -1,15 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Carts from "../components/Carts";
 import Pagination from "../components/Pagination";
 
 const CartsPage = () => {
-
+    const [btnSwitch, setBtnSwitch] = useState<boolean>(false)
 
 
     return (
         <div>
             <Carts/>
-            <Pagination/>
+            <Pagination setBtnSwitch={setBtnSwitch()}/>
         </div>
     );
 };

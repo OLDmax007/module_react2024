@@ -7,7 +7,6 @@ import Cart from "./Cart";
 const Carts = () => {
     const {id} = useParams();
     const [carts, setCarts] = useState<ICart[]>([])
-    const [btnSwitch, setBtnSwitch] = useState<boolean>(false)
     const [query] = useSearchParams({page: '1'})
 
     useEffect(() => {
@@ -16,7 +15,6 @@ const Carts = () => {
         if (id) {
             cartsService.getAll(id, +page).then((data: { carts: ICart[]; flag: boolean; }) => {
                 setCarts(data.carts)
-                setBtnSwitch(data.flag)
             });
         }
     }, [id, query]);
