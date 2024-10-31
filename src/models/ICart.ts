@@ -1,6 +1,7 @@
 import {IProduct} from "./IProduct";
 
 export interface ICart {
+    uniqeId: number;
     id: number;
     products: IProduct[];
     total: number;

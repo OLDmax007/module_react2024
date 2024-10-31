@@ -5,7 +5,6 @@ import Pagination from "../components/Pagination";
 const CartsPage = () => {
     const [btnSwitch, setBtnSwitch] = useState<boolean>(false)
 
-
     return (
         <div>
             <Carts setBtnSwitch={setBtnSwitch} />

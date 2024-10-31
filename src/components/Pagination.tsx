@@ -7,8 +7,7 @@ type PaginationProps = {
 
 const Pagination:FC<PaginationProps> = ({btnSwitch}) => {
     const [query, setQuery] = useSearchParams({page: '1'})
-
-    console.log(query.get('page'))
+    const isFirstPage:boolean = query.get('page') === '1';
 
     const onClickPrevHandler = () => {
         const page = query.get('page');
@@ -29,11 +28,12 @@ const Pagination:FC<PaginationProps> = ({btnSwitch}) => {
     }
 
 
+
     return (
         <div>
 
-            <button onClick={onClickPrevHandler}>Prev</button>
-            <button onClick={onClickNextHandler}>Next</button>
+            <button disabled={isFirstPage} onClick={onClickPrevHandler}>Prev</button>
+            <button disabled={btnSwitch} onClick={onClickNextHandler}>Next</button>
 
         </div>
     );

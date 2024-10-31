@@ -2,6 +2,7 @@ import axios from "axios";
 import {IUser} from "../models/IUser";
 import {IDJResponse} from "../models/IDJResponse";
 import {ICart} from "../models/ICart";
+import cart from "../components/Cart";
 
 const axiosInstance = axios.create({
             baseURL: 'https://dummyjson.com/',
@@ -24,18 +25,28 @@ const usersSerive = {
 }
 
 const cartsService = {
-    getAll: async (id: string, page: number): Promise<{ carts: ICart[]; flag: boolean; }> => {
+    getAll: async (userId: string, page: number): Promise<{ carts: ICart[]; flag: boolean; }> => {
         const skip = (page - 1) * 1;
-        const {data: {carts, total}} = await axiosInstance.get<IDJResponse & { carts: ICart[] }>(`/users/${id}/carts`, {
+        const {data: {carts, total}} = await axiosInstance.get<IDJResponse & {
+            carts: ICart[],
+            total: number
+        }>(`/users/${userId}/carts`, {
             params: {
                 skip
             },
-
         });
 
-        const lastIndex = carts[carts.length - 1].id;
-        const flag =  +lastIndex >= 0 ? true : false;
+        carts.forEach((cart:ICart, index:number) => {
+            cart['uniqeId'] = index+1;
+        });
 
+        console.log(carts)
+        const lastIndex = carts[carts.length - 1].uniqeId
+        const flag = lastIndex > total;
+        console.log(flag)
+
+        console.log(total)
+        console.log(lastIndex, flag)
         return {carts, flag}
     }
 }
