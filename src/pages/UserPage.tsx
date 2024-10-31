@@ -1,13 +1,13 @@
 import React from 'react';
-import {useLocation} from "react-router-dom";
+import Carts from "../components/Carts";
 
 const UserPage = () => {
-    const loc = useLocation()
-    console.log(loc.state);
+
+
 
     return (
         <div>
-            
+            <Carts/>
         </div>
     );
 };

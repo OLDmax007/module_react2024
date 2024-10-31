@@ -20,7 +20,7 @@ const usersSerive = {
 }
 
 const cartsService  = {
-    getAll: async ():Promise<ICart[]> => {
+    getAll: async (id:string):Promise<ICart[]> => {
         const {data: {carts}} = await axiosInstance.get<IDJResponse & {carts: ICart[]}>('/carts');
         return carts
     }
