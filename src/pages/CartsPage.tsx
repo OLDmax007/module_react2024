@@ -1,15 +1,17 @@
 import React from 'react';
 import Carts from "../components/Carts";
+import Pagination from "../components/Pagination";
 
-const UserPage = () => {
+const CartsPage = () => {
 
 
 
     return (
         <div>
             <Carts/>
+            <Pagination/>
         </div>
     );
 };
 
-export default UserPage;
+export default CartsPage;

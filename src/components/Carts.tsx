@@ -1,23 +1,25 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
+import {useParams, useSearchParams} from "react-router-dom";
 import {cartsService} from "../services/api.dummyjson.service";
 import {ICart} from "../models/ICart";
-import {IUser} from "../models/IUser";
-import User from "./User";
 import Cart from "./Cart";
 
 const Carts = () => {
     const {id} = useParams();
     const [carts, setCarts] = useState<ICart[]>([])
+    const [btnSwitch, setBtnSwitch] = useState<boolean>(false)
+    const [query] = useSearchParams({page: '1'})
 
     useEffect(() => {
+
+        const page = query.get('page') || '1'
         if (id) {
-            cartsService.getAll(id).then((data: ICart[]) => {
-                console.log(data);
-                setCarts(data)
+            cartsService.getAll(id, +page).then((data: { carts: ICart[]; flag: boolean; }) => {
+                setCarts(data.carts)
+                setBtnSwitch(data.flag)
             });
         }
-    }, [id]);
+    }, [id, query]);
 
     return (
         <div>

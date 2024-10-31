@@ -10,7 +10,7 @@ const Cart:FC<CartProps> = ({cart}) => {
         <div>
             UserId: {cart.userId} Total: {cart.total}
             <ul>
-                {cart.products.map((product: IProduct) => <li>{product.title}</li>)}
+                {cart.products.map((product: IProduct) => <li key={product.id}> {product.title}</li>)}
             </ul>
         </div>
     );
