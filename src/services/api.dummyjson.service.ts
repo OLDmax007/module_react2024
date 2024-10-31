@@ -33,7 +33,7 @@ const cartsService = {
 
         });
 
-        const lastIndex = carts[carts.length - 1];
+        const lastIndex = carts[carts.length - 1].id;
         const flag =  +lastIndex >= 0 ? true : false;
 
         return {carts, flag}

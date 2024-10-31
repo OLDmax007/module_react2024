@@ -5,7 +5,7 @@ import {ICart} from "../models/ICart";
 import Cart from "./Cart";
 
 type CartsProps = {
-    setBtnSwitch: () => void
+    setBtnSwitch: (value: boolean) => void
 }
 
 const Carts:FC<CartsProps> = ({setBtnSwitch}) => {
