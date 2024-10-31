@@ -12,7 +12,6 @@ const axiosInstance = axios.create({
     )
 ;
 
-
 const usersSerive = {
     getAll: async ():Promise<IUser[]> => {
         const {data: {users}} = await axiosInstance.get<IDJResponse & {users: IUser[]}>('/users');
