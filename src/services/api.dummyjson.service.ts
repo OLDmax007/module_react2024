@@ -2,6 +2,7 @@ import axios from "axios";
 import {IUser} from "../models/IUser";
 import {IDJResponse} from "../models/IDJResponse";
 import {ICart} from "../models/ICart";
+import {isFinalIndex, toCreateUniqeIdForItem} from "../modules/utils";
 
 const axiosInstance = axios.create({
             baseURL: 'https://dummyjson.com/',
@@ -13,13 +14,20 @@ const axiosInstance = axios.create({
 ;
 
 const usersSerive = {
-    getAllUsers: async (): Promise<IUser[]> => {
-        const {data: {users}} = await axiosInstance.get<IDJResponse & { users: IUser[] }>('/users', {
+    getAllUsers: async (page: number): Promise<{ users: IUser[]; flag: boolean }> => {
+        const skip = (page - 1) * 10;
+        const {data: {users, total}} = await axiosInstance.get<IDJResponse & { users: IUser[] }>('/users', {
             params: {
-                skip: 30
+                skip,
+                limit: 10
             }
         });
-        return users
+
+        toCreateUniqeIdForItem(users)
+
+        const arr: IUser[] = users;
+        const flag = isFinalIndex(arr, total)
+        return {users, flag}
     }
 }
 
@@ -37,18 +45,11 @@ const cartsService = {
         });
 
 
-        if (carts.length === 0) {
-            return { carts, flag: true };
-        }
+        toCreateUniqeIdForItem(carts)
 
-        carts.forEach((cart: ICart, index: number) => {
-            cart['uniqeId'] = skip + 1;
-        });
-
-        const lastIndex = carts[carts.length - 1].uniqeId
-        const flag = lastIndex >= total ? true : false;
+        const arr: ICart[] = carts;
+        const flag = isFinalIndex(arr, total)
         return {carts, flag}
-
     }
 }
 
