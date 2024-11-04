@@ -1,32 +1,22 @@
-import React, {FormEvent, useState} from 'react';
+import React from 'react';
+import {useForm} from "react-hook-form";
 
 const Form = () => {
+    const {handleSubmit, register} = useForm();
 
-    const [formState, setFormState] = useState<any>({
-        fname: '',
-        lname: '',
-    })
 
-    const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
-        console.log(formState)
+    const customHandler = (formData:any) => {
+        console.log(formData);
     }
-
-    const handleChangeInput = (e:FormEvent<HTMLInputElement>) => {
-        const input = e.target as HTMLInputElement;
-        setFormState({...formState, [input.name]: input.value})
-    }
-
-
-    console.log(formState)
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(customHandler)}>
             <label htmlFor="">
-                <input type="text" name={'fname'} onChange={handleChangeInput}/>
+                <input type="text"  {...register('fname')} />
             </label>
 
             <label htmlFor="">
-                <input type="text" name={'lname'} onChange={handleChangeInput}/>
+                <input type="text"  {...register('lname')}/>
             </label>
             <button>Ok</button>
         </form>
