@@ -11,14 +11,9 @@ const Form = () => {
         console.log(formState)
     }
 
-    const handleChangeFname = (e:FormEvent<HTMLInputElement>) => {
+    const handleChangeInput = (e:FormEvent<HTMLInputElement>) => {
         const input = e.target as HTMLInputElement;
-        setFormState({...formState, fname: input.value})
-    }
-
-    const handleChangeLname = (e:FormEvent<HTMLInputElement>) => {
-        const input = e.target as HTMLInputElement;
-        setFormState({...formState, lname: input.value})
+        setFormState({...formState, [input.name]: input.value})
     }
 
 
@@ -27,11 +22,11 @@ const Form = () => {
     return (
         <form onSubmit={handleSubmit}>
             <label htmlFor="">
-                <input type="text" name={'fname'} onChange={handleChangeFname}/>
+                <input type="text" name={'fname'} onChange={handleChangeInput}/>
             </label>
 
             <label htmlFor="">
-                <input type="text" name={'lname'} onChange={handleChangeLname}/>
+                <input type="text" name={'lname'} onChange={handleChangeInput}/>
             </label>
             <button>Ok</button>
         </form>
