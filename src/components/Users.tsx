@@ -21,6 +21,7 @@ const Users:FC<UsersProps> = ({setBtnSwitch}) => {
                 setBtnSwitch(data.flag)
             })
 
+
         }
     }, [query]);
 
