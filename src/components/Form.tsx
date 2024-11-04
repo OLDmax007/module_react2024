@@ -1,19 +1,24 @@
-import React from 'react';
+import React, {FormEvent, useState} from 'react';
 
 const Form = () => {
 
+    const [formState, setFormState] = useState<any>({})
 
-    const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        console.log('dog')
+        const form = e.target as HTMLFormElement;
+        console.log(form.fname.value)
     }
-
     return (
-        <form onSubmit={handleOnSubmit}>
+        <form onSubmit={handleSubmit}>
             <label htmlFor="">
-                <input type="text"/>
+                <input type="text" name={'fname'}/>
             </label>
-            <button type={"submit"}>Ok</button>
+
+            <label htmlFor="">
+                <input type="text" name={'lname'}/>
+            </label>
+            <button>Ok</button>
         </form>
     );
 };
