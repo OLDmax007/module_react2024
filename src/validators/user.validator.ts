@@ -15,15 +15,15 @@ export const userValidator = Joi.object({
         'string.empty': 'Last name is must be entered',
         'string.min': 'Last name must  contain at least 5 characters',
         'string.max': 'Last name must  not be longer than 15 characters',
-        'string.pattern.base': 'Last name should contain only lower case Latin characters'
+        'string.pattern.base': 'Last name must contain only lower case Latin characters'
 
     }),
     age: Joi.number().min(18).max(60).required().messages({
         'any.required': 'Field is required',
         'number.base': 'Age must be number',
-        'number.empty': 'Last name is must be entered',
-        'number.min': 'Age must  be bigger than 18',
-        'number.max': 'Age must  be less than 60'
+        'number.empty': 'Age must be entered',
+        'number.min': 'Age must be bigger than 18',
+        'number.max': 'Age must be less than 60'
     }),
     password: Joi.string()
         .min(8)
@@ -33,7 +33,7 @@ export const userValidator = Joi.object({
         .messages({
             'any.required': 'Field is required',
             'string.empty': 'Password must be entered',
-            'string.min': 'Password must  contain at least 8 characters',
+            'string.min': 'Password must contain at least 8 characters',
             'string.max': 'Password must not be longer than 15 characters',
             'string.pattern.base': 'Password must contain only Latin characters with at least one symbol in the end'
         }),

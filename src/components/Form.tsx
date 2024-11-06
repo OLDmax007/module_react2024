@@ -3,6 +3,7 @@ import {useForm} from "react-hook-form";
 import {IFormData} from "../models/IFormData";
 import {userValidator} from "../validators/user.validator";
 import {joiResolver} from "@hookform/resolvers/joi";
+import {userServices} from "../services/api.user.service";
 
 const Form = () => {
     const {handleSubmit,
@@ -11,7 +12,11 @@ const Form = () => {
         useForm<IFormData>({mode: "all", resolver: joiResolver(userValidator)});
 
     const toSubmitForm = (formData: IFormData) => {
-        console.log(formData);
+        userServices.postUser(formData).then((data) => {
+            console.log("Successfully:", data);
+        }).catch((error) => {
+            console.error("Error:", error);
+        });
     };
 
     return (
@@ -75,7 +80,7 @@ const Form = () => {
                 {errors.birthDate && <div>{errors.birthDate.message}</div>}
             </div>
 
-            <button disabled={isValid} type={'submit'}>Send</button>
+            <button disabled={!isValid} type={'submit'}>Send</button>
         </form>
     );
 };
