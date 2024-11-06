@@ -1,11 +1,14 @@
 import React from 'react';
 import {useForm} from "react-hook-form";
 import {IFormData} from "../models/IFormData";
+import {userValidator} from "../validators/user.validator";
 
 const Form = () => {
-    const {handleSubmit, register, formState: {errors, isValid}} = useForm<IFormData>();
+    const {handleSubmit,
+        register,
+        formState: {errors, isValid}} = useForm<IFormData>(userValidator);
 
-    const toSubmitForm = (formData) => {
+    const toSubmitForm = (formData: IFormData) => {
         console.log(formData)
     }
 
@@ -27,7 +30,7 @@ const Form = () => {
                 <input type="number" placeholder={'Age'} {...register('age')}/>
             </label>
             <label htmlFor="">
-                <input type="radio" value={'single'} {...register('marriedStatus')}/>
+                <input type="radio" defaultChecked={true} value={'single'} {...register('marriedStatus')}/>
                 <p>Single</p>
             </label>
             <label htmlFor="">
@@ -35,7 +38,7 @@ const Form = () => {
                 <p>Married</p>
             </label>
             <label htmlFor="">
-                <input type="date" {...register('date')}/>
+                <input type="date" placeholder={'Birth date'} {...register('birthDate')}/>
             </label>
             <button type={'submit'}>Send</button>
         </form>

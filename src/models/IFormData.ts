@@ -4,6 +4,6 @@ export interface IFormData {
     password: string,
     age: string,
     email: string,
-    marriedStatu: 'single' | 'married',
+    marriedStatus: 'single' | 'married',
     birthDate: string;
 }
