@@ -35,31 +35,20 @@ axiosInstance.interceptors.request.use(request => {
         users.push(userWithToken)
         localStorage.setItem('users', JSON.stringify(users));
 
-        console.log('-----------------')
-        console.log(userWithToken.accessToken)
-        console.log(userWithToken.refreshToken)
-
         return userWithToken
     },
 
     refreshToken: async () => {
         const user = retriveLocalStorage<IUser & IToken>('currentUser');
-
-        console.log('user')
-        console.log(user.accessToken)
-        console.log(user.refreshToken)
-
         const {data: {accessToken, refreshToken}} = await axiosInstance.post<IToken>('/refresh', {
             refreshToken: user.refreshToken,
             expiresInMins: 0
         })
 
-        console.log(accessToken)
-        console.log(refreshToken)
 
         user.accessToken = accessToken;
         user.refreshToken = refreshToken;
-        console.log(user)
+
         localStorage.setItem('currentUser', JSON.stringify(user))
 
     },
