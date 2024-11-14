@@ -1,11 +1,28 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 const App = () => {
     let [count, setCount] = useState<number>(0)
 
+    console.log('basic: '+ count)
+
+    useEffect(() => {
+        console.log(count)
+
+        // func unsubscribe
+        return (
+            () => {
+                console.log('finish')
+            }
+        )
+
+    }, [count]);
+
+
 
     const inc = () => {
-        setCount(count++)
+        setCount(prevState => prevState+1)
+        setCount(prevState => prevState+1)
+        setCount(prevState => prevState+1)
     }
 
     const dec = () => {
