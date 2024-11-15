@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {dummyJsonData} from "../services/api.dj.service";
-import {IDJResponse, IPost, IProduct, IUser} from "../models/BasicModels";
+import {IDJResponse} from "../models/BasicModels";
 
 
 const useFetch = <T>(endpoint: string) => {

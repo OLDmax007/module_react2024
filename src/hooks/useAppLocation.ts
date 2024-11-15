@@ -1,5 +1,5 @@
 import {useLocation} from "react-router-dom";
 
-const useAppLocation = () => {
+const useAppLocation = <T,> () => {
     useLocation()
 }
