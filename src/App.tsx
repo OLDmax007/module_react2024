@@ -1,32 +1,29 @@
-import React, {useReducer} from 'react';
-import reducerActions from "./utils/reducerActions";
+import React from 'react';
+import useFetch from "./hooks/useFetch";
+import {IPost, IProduct, IUser} from "./models/BasicModels";
+
+
+
+
 
 const App = () => {
 
 
-   const [num, dispatch] = useReducer(reducerActions, 0)
+    const products = useFetch<IProduct[]>('products')
+    const users = useFetch<IUser[]>('users')
+    const posts = useFetch<IPost[]>('posts')
 
 
-    const decrement = () => {
-        dispatch({type: 'dec', payload: 5})
-    };
 
-    const increment = () => {
-        dispatch({type: 'inc', payload: 5})
-    };
-
-    const reset = () => {
-        dispatch({type: 'reset', payload: 0})
-    }
+    console.log('--------------')
+    console.log(products)
+    console.log(users);
+    console.log(posts);
 
 
     return (
         <div>
-
-            <h1>{num}</h1>
-            <button onClick={decrement}>dec</button>
-            <button onClick={increment}>inc</button>
-            <button onClick={reset}>reset</button>
+            
         </div>
     );
 };
