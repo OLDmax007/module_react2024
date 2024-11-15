@@ -1,14 +1,14 @@
-import React, {memo} from 'react';
+import React, { FC, memo } from 'react';
 
-const SomeComp = memo(() => {
-        console.log('pes')
+const SomeComp: FC<{ num: number; someFunc: () => void }> = memo(({ num, someFunc }) => {
+    console.log('pes');
 
-        return (
-            <div>
-
-            </div>
-        );
-    }
-)
+    return (
+        <div>
+            <p>{num}</p>
+            <button onClick={someFunc}>Call Function</button>
+        </div>
+    );
+});
 
 export default SomeComp;
