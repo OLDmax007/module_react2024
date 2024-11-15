@@ -1,29 +1,19 @@
-import React from 'react';
-import useFetch from "./hooks/useFetch";
-import {IPost, IProduct, IUser} from "./models/BasicModels";
-
-
-
+import React, {useState} from 'react';
+import SomeComp from "./SomeComp";
 
 
 const App = () => {
 
-
-    const products = useFetch<IProduct[]>('products')
-    const users = useFetch<IUser[]>('users')
-    const posts = useFetch<IPost[]>('posts')
-
-
-
-    console.log('--------------')
-    console.log(products)
-    console.log(users);
-    console.log(posts);
-
+    const [num, setNum] = useState<number>(0)
+console.log(num)
 
     return (
         <div>
-            
+            <SomeComp/>
+            <button onClick={() => {
+                setNum(prevState => prevState + 1)
+            }}>inc
+            </button>
         </div>
     );
 };
