@@ -1,7 +1,8 @@
 import React, { FC, memo } from 'react';
 
-const SomeComp: FC<{ num: number; someFunc: () => void }> = memo(({ num, someFunc }) => {
+const SomeComp: FC<any> = memo(({ num, someFunc, returnSomeObj }) => {
     console.log('pes');
+    console.log(returnSomeObj)
 
     return (
         <div>

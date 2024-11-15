@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useMemo, useState} from 'react';
 import SomeComp from "./SomeComp";
 
 
@@ -12,9 +12,15 @@ const App = () => {
         console.log('PPPESS')
     }, []);
 
+    const returnSomeObj = useMemo(() => {
+        return {id: 1}
+    }, []);
+
+
+
     return (
         <div>
-            <SomeComp num={0} someFunc={someFunc} />
+            <SomeComp num={0} someFunc={someFunc}  returnSomeObj={returnSomeObj}/>
             <button onClick={() => {
                 setNum(prevState => prevState + 1)
             }}>inc
