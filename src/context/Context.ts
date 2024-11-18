@@ -6,7 +6,9 @@ import {IUser} from "../models/IUser";
 export let defaultValue:StoreType = {userSlice:
         {allUsers: [],
             user: null,
-            fillUsers: (value:IUser[]) => {}
+            fillUsers: (value:IUser[]) => {
+            defaultValue.userSlice.allUsers = value
+            }
         }
 }
 
