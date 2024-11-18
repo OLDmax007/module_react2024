@@ -6,10 +6,12 @@ import {userService} from "../services/api.dj.service";
 
 const UsersPage = () => {
 
-    const {userSlice:{fillUsers, allUsers}}:StoreType = useContext(Context)
+    const {userSlice: {fillUsers, fillUser, allUsers}}: StoreType = useContext(Context)
 
     useEffect(() => {
-        userService.getAllUsers().then((data:IUser[]) => {fillUsers(data)} )
+        userService.getAllUsers().then((data: IUser[]) => {
+            fillUsers(data)
+        })
     }, [allUsers]);
 
 
@@ -17,13 +19,14 @@ const UsersPage = () => {
         <div>
             <ul>
                 {allUsers.map((user: IUser) => (
+                    // fillUser(user)
                     <li key={user.id}>
                         {user.birthDate}
                     </li>
                 ))}
                 UsersPage
             </ul>
-</div>
+        </div>
     );
 };
 
