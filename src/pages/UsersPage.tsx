@@ -1,19 +1,15 @@
-import React, {useContext, useEffect} from 'react';
-import Context from "../context/Context";
-import {StoreType} from "../models/StoreType";
+import React, {useEffect} from 'react';
 import {IUser} from "../models/IUser";
+import mainStore from "../store/store";
 import {userService} from "../services/api.dj.service";
 
 const UsersPage = () => {
-
-    const {userSlice: {fillUsers, fillUser, allUsers}}: StoreType = useContext(Context)
+    const {userSlice: {allUsers, fillUsers}} =  mainStore()
 
     useEffect(() => {
-        userService.getAllUsers().then((data: IUser[]) => {
-            fillUsers(data)
-        })
-    }, [allUsers]);
-
+        userService.getAllUsers().then((data:IUser[]) => fillUsers(data))
+        console.log(allUsers)
+    }, []);
 
     return (
         <div>
