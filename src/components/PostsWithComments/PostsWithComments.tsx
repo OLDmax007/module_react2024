@@ -1,22 +1,34 @@
 import React, {useEffect} from 'react';
+import {commentService, postService} from "../../services/api.jp.service";
 import mainStore from "../../store/store";
-import {IStore} from "../../models/IStore";
+import {IComment} from "../../models/IComment";
+import {IPost} from "../../models/IPost";
 
 const PostsWithComments = () => {
-     const store:IStore =  mainStore()
 
-    const posts = store.postSlice.allPosts
-    const comments = store.commentSlice.allComments
-    const  postsWithComments = store.postSlice.postsWithComments
-
+    const {commentSlice:{allComments,fillComments}, postSlice: {allPosts, fillPosts, fillPostsWithComments, postsWithComments}} = mainStore()
 
     useEffect(() => {
-        store.postSlice.fillPostsWithComments(posts, comments)
+        commentService.getAllComments().then((data:IComment[]) => fillComments(data) )
+        postService.getAllPosts().then((data:IPost[]) =>fillPosts(data) )
     }, []);
+
+    useEffect(() => {
+            fillPostsWithComments(allPosts, allComments);
+    }, [allPosts, allComments]);
 
     return (
         <div>
-            {JSON.stringify(postsWithComments)}
+            {postsWithComments.map(({ post:{id, title}, comments }) => (
+                <div key={id}>
+                    <h2>{title}</h2>
+                    <div>
+                        {comments.map(({ id: commentId,body }) => (
+                            <p key={commentId}>{body}</p>
+                        ))}
+                    </div>l
+                </div>
+            ))}
         </div>
     );
 };
