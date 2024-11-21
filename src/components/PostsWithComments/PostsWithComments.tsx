@@ -9,12 +9,18 @@ const PostsWithComments = () => {
     const {commentSlice:{allComments,fillComments}, postSlice: {allPosts, fillPosts, fillPostsWithComments, postsWithComments}} = mainStore()
 
     useEffect(() => {
-        commentService.getAllComments().then((data:IComment[]) => fillComments(data) )
-        postService.getAllPosts().then((data:IPost[]) =>fillPosts(data) )
+        if (allPosts.length === 0) {
+            postService.getAllPosts().then((data: IPost[]) => fillPosts(data));
+        }
+        if (allComments.length === 0) {
+            commentService.getAllComments().then((data: IComment[]) => fillComments(data));
+        }
     }, []);
 
     useEffect(() => {
+        if (allPosts.length > 0 && allComments.length > 0) {
             fillPostsWithComments(allPosts, allComments);
+        }
     }, [allPosts, allComments]);
 
     return (
@@ -23,7 +29,7 @@ const PostsWithComments = () => {
                 <div key={id}>
                     <h2>{title}</h2>
                     <div>
-                        {comments.map(({ id: commentId,body }) => (
+                        {comments.map(({ id: commentId,body ,  }) => (
                             <p key={commentId}>{body}</p>
                         ))}
                     </div>l
