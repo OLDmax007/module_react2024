@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../store/store";
 import {IUser} from "../../models/IUser";
+import {userSliceActions} from "../../store/slices/userSlice";
 
 const Users = () => {
     const {userSlice:{users}} = useAppSelector(state => state)
@@ -8,7 +9,7 @@ const Users = () => {
 
 
         useEffect(() => {
-            dispatch()
+            dispatch(userSliceActions.loadUsers())
         }, []);
 
         return (

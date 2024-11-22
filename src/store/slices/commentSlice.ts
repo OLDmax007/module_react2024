@@ -4,7 +4,7 @@ import {ICommentSlice} from "../../models/storeModels/ICommentSlice";
 import {commentService} from "../../services/api.jp.service";
 import {IComment} from "../../models/IComment";
 
-const commentInitState:ICommentSlice = {
+const commentInitState: ICommentSlice = {
     comments: []
 }
 
@@ -25,14 +25,16 @@ const commentSlice = createSlice({
     initialState: commentInitState,
     reducers: {},
     extraReducers: builder => {
-        builder.addCase(loadComments.fulfilled, (state, action:PayloadAction<IComment[]>) => {
+        builder.addCase(loadComments.fulfilled, (state, action: PayloadAction<IComment[]>) => {
             state.comments = action.payload;
         })
-            .addCase(loadComments.rejected, (state, action) => {
+            .addCase(loadComments.rejected, (state, action:PayloadAction<unknown>) => {
                 console.error('Error: ', action.payload);
             })
     }
 
 })
 
-export  default  commentSlice
+export const commentSliceActions = {...commentSlice.actions, loadComments};
+
+export default commentSlice

@@ -28,14 +28,14 @@ const userSlice = createSlice({
         builder.addCase(loadUsers.fulfilled, (state, action: PayloadAction<IUser[]>) => {
             state.users = action.payload;
         })
-            .addCase(loadUsers.rejected, (state, action) => {
+            .addCase(loadUsers.rejected, (state, action:PayloadAction<any>) => {
                 console.error('Error: ', action.payload);
             })
     }
 
 })
 
-export const userSliceAction = {...userSlice.actions, loadUsers}
+export const userSliceActions = {...userSlice.actions, loadUsers}
 
 
 export default userSlice

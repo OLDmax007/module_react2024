@@ -1,11 +1,13 @@
 import {IPostSlice} from "../../models/storeModels/IPostSlice";
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
-import {postService} from "../../services/api.jp.service";
+import {commentService, postService} from "../../services/api.jp.service";
 import {IPost} from "../../models/IPost";
+import {IComment} from "../../models/IComment";
 
 const postInitState: IPostSlice = {
-    posts: []
+    posts: [],
+    postComments: []
 }
 
 
@@ -20,6 +22,18 @@ const loadPosts = createAsyncThunk('postSlice/loadPosts', async (_, thunkAPI) =>
     }
 })
 
+const loadCommentsToPost = createAsyncThunk('postSlice/loadCommentsToPost',
+    async (id: number, thunkAPI) => {
+        try {
+            const postCommentsApi = await commentService.getCommentsForPost(id)
+            return thunkAPI.fulfillWithValue(postCommentsApi)
+        } catch (e) {
+            const error = e as AxiosError
+            return thunkAPI.rejectWithValue(error)
+        }
+    })
+
+
  const postSlice = createSlice(
     {
         name: 'postSLice',
@@ -29,12 +43,20 @@ const loadPosts = createAsyncThunk('postSlice/loadPosts', async (_, thunkAPI) =>
             builder.addCase(loadPosts.fulfilled, (state, action: PayloadAction<IPost[]>) => {
                 state.posts = action.payload
             })
-                .addCase(loadPosts.rejected, (state, action) => {
+                .addCase(loadPosts.rejected, (state, action:PayloadAction<any>) => {
+                    console.log('Error: ', action.payload)
+                })
+                .addCase(loadCommentsToPost.fulfilled, (state, action: PayloadAction<IComment[]>) => {
+                    state.postComments = action.payload
+                })
+                .addCase(loadCommentsToPost.rejected, (state, action:PayloadAction<any>) => {
                     console.log('Error: ', action.payload)
                 })
         }
+
     }
 )
 
+export const postSliceActions = { ...postSlice.actions, loadPosts, loadCommentsToPost };
 
 export default postSlice

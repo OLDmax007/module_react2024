@@ -11,22 +11,29 @@ const axiosInstance = axios.create({
 })
 
 const userService = {
-    getAllUsers: async ():Promise<IUser[]> => {
-        const {data:users} = await axiosInstance.get<IUser[]>('users')
+    getAllUsers: async (): Promise<IUser[]> => {
+        const {data: users} = await axiosInstance.get<IUser[]>('users')
         return users
     }
 }
 const postService = {
-    getAllPosts: async ():Promise<IPost[]> => {
-        const {data:posts} = await  axiosInstance.get<IPost[]>('posts')
+    getAllPosts: async (): Promise<IPost[]> => {
+        const {data: posts} = await axiosInstance.get<IPost[]>('posts')
         return posts
     }
+
 }
 const commentService = {
-    getAllComments: async ():Promise<IComment[]> => {
-        const {data:comments} = await  axiosInstance.get<IComment[]>('comments')
+    getAllComments: async (): Promise<IComment[]> => {
+        const {data: comments} = await axiosInstance.get<IComment[]>('comments')
+        return comments
+    },
+
+    getCommentsForPost: async (id:number): Promise<IComment[]> => {
+        const {data: comments} = await axiosInstance.get<IComment[]>('comments?postId=' + id)
         return comments
     }
+
 }
 
 export {userService, postService, commentService}

@@ -1,17 +1,24 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {IComment} from "../../models/IComment";
-import {useAppSelector} from "../../store/store";
+import {useAppDispatch, useAppSelector} from "../../store/store";
+import {commentSliceActions} from "../../store/slices/commentSlice";
+import Comment from "./Comment";
 
 const Comments = () => {
     const allComments = useAppSelector(state => state.commentSlice.comments)
+    const dispatch = useAppDispatch()
+
+
+    useEffect(() => {
+        dispatch(commentSliceActions.loadComments())
+    }, []);
+
+
 
     return (
         <ul>
             {allComments.map((comment: IComment) => (
-                <li key={comment.id}>
-                    {comment.id}
-                    {comment.body}
-                </li>
+                <Comment key={comment.id} comment={comment}/>
             ))}
         </ul>
     );
