@@ -14,4 +14,3 @@ export const store = configureStore({
 
 export const useAppSelector = useSelector.withTypes<ReturnType<typeof store.getState>>();
 export const useAppDispatch = useDispatch.withTypes<typeof store.dispatch>();
-
