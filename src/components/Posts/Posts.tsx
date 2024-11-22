@@ -1,11 +1,13 @@
 import React from 'react';
 import {IPost} from "../../models/IPost";
+import {useAppSelector} from "../../store/store";
 
 const Posts = () => {
+    const {postSlice:{posts,}} = useAppSelector(state => state)
 
     return (
             <ul>
-                {allPosts.map((post: IPost) => (
+                {posts.map((post: IPost) => (
                     <li key={post.id}>
                         {post.id}
                         {post.title}

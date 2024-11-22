@@ -1,7 +1,9 @@
 import React from 'react';
 import {IComment} from "../../models/IComment";
+import {useAppSelector} from "../../store/store";
 
 const Comments = () => {
+    const allComments = useAppSelector(state => state.commentSlice.comments)
 
     return (
         <ul>
