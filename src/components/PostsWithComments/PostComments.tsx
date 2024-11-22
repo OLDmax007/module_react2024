@@ -19,9 +19,9 @@ const PostComments:FC<IPostCommentsProps> = ({postId}) => {
 
 
     return (
-        <div>
+        <ol>
             {postComments.map((comment:IComment) => <Comment comment={comment}/>)}
-        </div>
+        </ol>
     );
 };
 

@@ -8,8 +8,10 @@ interface ICommentProps {
 const Comment: FC<ICommentProps> = ({comment}) => {
     return (
         <li key={comment.id}>
-            {comment.id}
+            {comment.postId}
+            {/*{comment.id}*/}
             {comment.body}
+
         </li>
 
     );
