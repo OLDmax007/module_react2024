@@ -6,11 +6,12 @@ import Comment from "../Comments/Comment";
 
 
 interface IPostCommentsProps {
-   postId: number
+    postId: number
 }
 
-const PostComments:FC<IPostCommentsProps> = ({postId}) => {
-    const postComments= useAppSelector(state => state.postSlice.postComments)
+const PostComments: FC<IPostCommentsProps> = ({postId}) => {
+    const {commentSlice: {comments}} = useAppSelector(state => state);
+
     const dispatch = useAppDispatch()
 
     useEffect(() => {
@@ -19,9 +20,13 @@ const PostComments:FC<IPostCommentsProps> = ({postId}) => {
 
 
     return (
-        <ol>
-            {postComments.map((comment:IComment) => <Comment comment={comment}/>)}
-        </ol>
+        <li>
+            <ol>
+                {comments.filter(comment => comment.postId === postId).map((comment: IComment) => (
+                    <Comment comment={comment} key={comment.id}/>
+                ))}
+            </ol>
+        </li>
     );
 };
 

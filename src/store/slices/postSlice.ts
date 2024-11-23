@@ -29,7 +29,7 @@ const loadCommentsToPost = createAsyncThunk('postSlice/loadCommentsToPost',
             return thunkAPI.fulfillWithValue(postCommentsApi)
         } catch (e) {
             const error = e as AxiosError
-            return thunkAPI.rejectWithValue(error)
+            return thunkAPI.rejectWithValue(error.message)
         }
     })
 

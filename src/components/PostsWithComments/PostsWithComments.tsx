@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {useAppSelector} from "../../store/store";
 import {IPost} from "../../models/IPost";
 import Post from "../Posts/Post";
@@ -6,19 +6,19 @@ import PostComments from "./PostComments";
 
 
 const PostsWithComments = () => {
-    const {postSlice: {posts}} = useAppSelector(state => state);
+    const {postSlice: {posts}, commentSlice: {comments}} = useAppSelector(state => state);
 
     console.log(posts);
 
     return (
-        <div>
+        <ul>
             {posts.map((post: IPost) => (
-                <React.Fragment key={post.id}>
-                    <Post post={post}/>
+                <Fragment key={post.id}>
+                    <Post key={post.id} post={post}/>
                     <PostComments postId={post.id}/>
-                </React.Fragment>
+                </Fragment>
             ))}
-        </div>
+        </ul>
     );
 };
 
